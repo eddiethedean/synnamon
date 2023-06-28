@@ -1,0 +1,11 @@
+notebooks/
+
+synnamon.egg-info/
+synnamon/__pycache__/
+dist/
+build/
+.vscode/
+.ipynb_checkpoints/
+__pycache__/
+tests/__pycache__/
+.DS_Store
