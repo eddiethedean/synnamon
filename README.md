@@ -3,7 +3,7 @@ A simple Python package that looks up synonyms using a built in thesaurus json f
 ![Synnamon Logo](https://raw.githubusercontent.com/eddiethedean/synnamon/main/docs/synnamon.png)
 -----------------
 
-# FullmetalAlchemy: Easy to use functions for sql table changes
+# Synnamon: Easy to use function for word synonym lookups
 [![PyPI Latest Release](https://img.shields.io/pypi/v/synnamon.svg)](https://pypi.org/project/synnamon/)
 ![Tests](https://github.com/eddiethedean/synnamon/actions/workflows/tests.yml/badge.svg)
 
