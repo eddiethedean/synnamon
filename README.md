@@ -21,7 +21,7 @@ pip install synnamon
 ```
 
 ## Dependencies
-- Python
+- inflex
 
 
 ## Example

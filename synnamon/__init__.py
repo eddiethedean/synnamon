@@ -1,3 +1,3 @@
-__version__ = '0.0.4'
+__version__ = '0.1.0'
 
-from .get_syns import get_syns
+from synnamon.get_syns import get_syns
