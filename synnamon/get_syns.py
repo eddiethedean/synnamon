@@ -3,7 +3,7 @@ from copy import deepcopy
 from inflex import Noun
 
 # Load thesaurus from JSON file
-with open('synnamon/data/en_thesaurus_dict.json', 'r') as f:
+with open('../data/en_thesaurus_dict.json', 'r') as f:
     thesaurus = json.load(f)
 
 
