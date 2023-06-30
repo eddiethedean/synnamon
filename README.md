@@ -9,7 +9,7 @@ A simple Python package that looks up synonyms using a built in thesaurus json f
 
 ## What is it?
 
-**Synnamon** is a simple Python package that looks up synonyms using a built in thesaurus json file.
+**Synnamon** is a simple Python package that looks up synonyms using a built in thesaurus shelve file.
 
 ## Where to get it
 The source code is currently hosted on GitHub at:
@@ -21,7 +21,7 @@ pip install synnamon
 ```
 
 ## Dependencies
-- inflex
+- inflex: used to convert plural word lookups to singular and then convert singular synonym results to plural
 
 
 ## Example
