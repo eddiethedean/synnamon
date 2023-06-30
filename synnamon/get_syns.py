@@ -1,13 +1,6 @@
-import os
-import pathlib
-import json
+from .data.thesaurus import thesaurus
 
 from inflex import Noun
-
-path = pathlib.Path(__file__).parent.resolve()
-
-with open(os.path.join(path, 'data/en_thesaurus_dict.json')) as f:
-    thesaurus = json.load(f)
 
 
 def get_record(word: str) -> dict:
