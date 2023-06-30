@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="synnamon",
-    version="0.1.4",
+    version="0.1.5",
     description="Pure Python package for getting synonyms for words.",
     long_description=README,
     long_description_content_type="text/markdown",

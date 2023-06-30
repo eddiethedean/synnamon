@@ -9,3 +9,5 @@ build/
 __pycache__/
 tests/__pycache__/
 .DS_Store
+synnamon/data/en_thesaurus_dict.json
+synnamon/data/__MACOSX

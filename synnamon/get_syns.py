@@ -1,17 +1,20 @@
 import os
 import pathlib
+import json
 
 from inflex import Noun
-from sqlitedict import SqliteDict
 
 path = pathlib.Path(__file__).parent.resolve()
 
+with open(os.path.join(path, 'data/en_thesaurus_dict.json')) as f:
+    thesaurus = json.load(f)
+
 
 def get_record(word: str) -> dict:
-    with SqliteDict(os.path.join(path, 'data/en_thesaurus.sqlite')) as db:
-        if word in db:
-            return db[word]
-    return {}
+    if word in thesaurus:
+        return thesaurus[word]
+    else:
+        return {}
 
 
 def get_syns(word: str) -> dict:
