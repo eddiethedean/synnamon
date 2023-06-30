@@ -1,9 +1,14 @@
 import json
 from copy import deepcopy
+import os
+import pathlib
+
 from inflex import Noun
 
+path = pathlib.Path(__file__).parent.resolve()
+
 # Load thesaurus from JSON file
-with open('../data/en_thesaurus_dict.json', 'r') as f:
+with open(os.path.join(path, 'data/en_thesaurus_dict.json'), 'r') as f:
     thesaurus = json.load(f)
 
 

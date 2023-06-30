@@ -18,7 +18,12 @@ class TestGetSyns(unittest.TestCase):
         # Test case for a plural noun that does not exists in the thesaurus
         result = get_syns('dragons')
         self.assertIn('noun', result)
-        self.assertListEqual(result['noun'], ['flying lizards', 'tartars', 'firedrakes', 'flying dragons'])
+        self.assertListEqual(result['noun'], ['flying lizards',
+                                                'tartars',
+                                                'Dragons',
+                                                'Dracos',
+                                                'firedrakes',
+                                                'flying dragons'])
         
 
 if __name__ == '__main__':
