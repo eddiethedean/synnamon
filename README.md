@@ -1,4 +1,4 @@
-A simple Python package that looks up synonyms using a built in thesaurus json file.
+A simple Python package that looks up synonyms for words.
 
 ![Synnamon Logo](https://raw.githubusercontent.com/eddiethedean/synnamon/main/docs/synnamon.png)
 -----------------
@@ -9,7 +9,7 @@ A simple Python package that looks up synonyms using a built in thesaurus json f
 
 ## What is it?
 
-**Synnamon** is a simple Python package that looks up synonyms using a built in thesaurus shelve file.
+**Synnamon** is a simple Python package that looks up synonyms using a built in thesaurus shelve file instead of reaching out to web resources (PyDictionary) or using large English lexical databases (nltk WordNet).
 
 ## Where to get it
 The source code is currently hosted on GitHub at:
