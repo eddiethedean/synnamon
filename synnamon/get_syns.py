@@ -1,19 +1,16 @@
-import shelve
 import os
 import pathlib
 
 from inflex import Noun
+from sqlitedict import SqliteDict
 
 path = pathlib.Path(__file__).parent.resolve()
 
 
 def get_record(word: str) -> dict:
-    with shelve.open(os.path.join(path, 'data/en_thesaurus0')) as thesaurus0:
-        if word in thesaurus0:
-            return thesaurus0[word]
-    with shelve.open(os.path.join(path, 'data/en_thesaurus1')) as thesaurus1:
-        if word in thesaurus1:
-            return thesaurus1[word]
+    with SqliteDict(os.path.join(path, 'data/en_thesaurus.sqlite')) as db:
+        if word in db:
+            return db[word]
     return {}
 
 

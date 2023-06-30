@@ -22,6 +22,7 @@ pip install synnamon
 
 ## Dependencies
 - inflex: used to convert plural word lookups to singular and then convert singular synonym results to plural
+- sqlitedict
 
 
 ## Example
