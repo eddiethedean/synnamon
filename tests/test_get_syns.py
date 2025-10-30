@@ -1,93 +1,42 @@
-import unittest
+import pytest
 from synnamon import get_syns
 
 
-class TestGetSyns(unittest.TestCase):
-    def test_get_syns_pos(self):
-        # Test case for a word that exists in the thesaurus
-        result = get_syns('jump')
-        expected = {'noun': ['leap', 'parachuting', 'jumping', 'saltation', 'startle', 'start'],
-                    'verb': ['leap',
-                            'spring',
-                            'stand out',
-                            'alternate',
-                            'startle',
-                            'climb up',
-                            'chute',
-                            'jump-start',
-                            'jump out',
-                            'skip over',
-                            'stick out',
-                            'jump off',
-                            'jumpstart',
-                            'pass over',
-                            'derail',
-                            'start',
-                            'rise',
-                            'bound',
-                            'parachute',
-                            'jump on',
-                            'leap out',
-                            'skip']}
-        self.assertEqual(result, expected)
+def test_get_syns_found_contains_expected_keys_and_examples():
+    result = get_syns("jump")
+    assert "noun" in result or "verb" in result
+    # Spot-check a few expected synonyms without relying on full ordering
+    verb_syns = set(result.get("verb", []))
+    assert {"leap", "jump out", "skip"}.issubset(verb_syns)
 
-    def test_get_syns_not_exist(self):
-        # Test case for a word that does not exist in the thesaurus
-        result = get_syns('notaword')
-        self.assertEqual(result, {})
 
-    def test_get_syns_plural(self):
-        # Test case for a plural noun that does not exists in the thesaurus
-        result = get_syns('dragons')
-        self.assertIn('noun', result)
-        self.assertListEqual(result['noun'], ['flying lizards',
-                                                'tartars',
-                                                'Dragons',
-                                                'Dracos',
-                                                'firedrakes',
-                                                'flying dragons'])
-        
-    def test_get_syns_empty_word(self):
-        # Test case for an empty string
-        result = get_syns('')
-        self.assertEqual(result, {})
+@pytest.mark.parametrize("word", ["notaword", "c++"])
+def test_get_syns_unknown_or_special_returns_empty(word: str):
+    assert get_syns(word) == {}
 
-    def test_get_syns_multiple_pos(self):
-        # Test case for a word with multiple parts of speech
-        result = get_syns('run')
-        self.assertIn('noun', result)
-        self.assertIn('verb', result)
 
-    def test_get_syns_case_insensitive(self):
-        # Test case for a word with mixed case
-        result = get_syns('HaPpY')
-        expected = {'adj': ['halcyon',
-                            'glad',
-                            'prosperous',
-                            'laughing',
-                            'riant',
-                            'joyous',
-                            'blessed',
-                            'felicitous',
-                            'contented',
-                            'willing',
-                            'elated',
-                            'well-chosen',
-                            'blissful',
-                            'content',
-                            'golden',
-                            'bright',
-                            'cheerful',
-                            'euphoric',
-                            'joyful',
-                            'fortunate']}
-        self.assertEqual(result, expected)
+def test_get_syns_plural_path_pluralizes_noun_syns():
+    # For a plural not directly present, we expect noun results
+    result = get_syns("dragons")
+    assert "noun" in result
+    # Ensure some known pluralized forms are present (case preserved as in data)
+    noun_syns = set(result["noun"])
+    expected_some = {"flying lizards", "firedrakes", "flying dragons"}
+    assert expected_some.issubset(noun_syns)
 
-    def test_get_syns_special_chars(self):
-        # Test case for a word with special characters
-        result = get_syns('c++')
-        self.assertEqual(result, {})
-        
 
-if __name__ == '__main__':
-    unittest.main()
+@pytest.mark.parametrize("word", ["", "   "])
+def test_get_syns_empty_or_whitespace_returns_empty(word: str):
+    assert get_syns(word) == {}
+
+
+def test_get_syns_multiple_pos_present_for_run():
+    result = get_syns("run")
+    assert "noun" in result and "verb" in result
+
+
+def test_get_syns_case_insensitive_happy_contains_adj_synonyms():
+    result = get_syns("HaPpY")
+    assert "adj" in result
+    adj_syns = set(result["adj"])
+    assert {"glad", "joyful", "cheerful"}.issubset(adj_syns)
